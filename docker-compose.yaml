@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  azure-service-bus-sender:
+    build:
+      context: .
+      target: production
+    image: azure-service-bus-sender
+    container_name: azure-service-bus-sender
+    environment:
+      ServiceBusConfig__Host: ${AZURE_SERVICE_BUS_HOST}
+      ServiceBusConfig__Username: ${AZURE_SERVICE_BUS_USERNAME}
+      ServiceBusConfig__Password: ${AZURE_SERVICE_BUS_PASSWORD}

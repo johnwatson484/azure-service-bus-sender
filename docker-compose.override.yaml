@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  azure-service-bus-sender:
+    build:
+      target: development
+    volumes:
+      - ./AzureServiceBusSender:/home/dotnet/AzureServiceBusSender
