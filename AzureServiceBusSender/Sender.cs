@@ -23,7 +23,7 @@ namespace AzureServiceBusSender
             ServiceBusMessage message = new ServiceBusMessage(SerializeMessage(body));
             await sender.SendMessageAsync(message);
             
-            Console.WriteLine($"Sent message - {message.Body}");
+            Console.WriteLine($"Sent message to queue - {message.Body}");
         }
 
         public async Task SendMessageToTopicAsync(object body)
@@ -32,6 +32,8 @@ namespace AzureServiceBusSender
             ServiceBusSender sender = client.CreateSender(config.Topic);
             ServiceBusMessage message = new ServiceBusMessage(SerializeMessage(body));
             await sender.SendMessageAsync(message);
+
+            Console.WriteLine($"Sent message to topic - {message.Body}");
         }
 
         private string CreateConnectionString(ServiceBusConfig config)
