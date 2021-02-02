@@ -16,8 +16,11 @@ namespace AzureServiceBusSender
             using IHost host = CreateHostBuilder(args).Build();
             
             Sender sender = serviceProvider.GetService<Sender>();
-            await sender.SendMessageToQueueAsync(new { CurrentTime = DateTime.UtcNow });
-            await sender.SendMessageToTopicAsync(new { CurrentTime = DateTime.UtcNow });
+            for (int i = 0; i < 10; i++)
+            {
+                await sender.SendMessageToQueueAsync(new { Id = i, CurrentTime = DateTime.UtcNow });
+                await sender.SendMessageToTopicAsync(new { Id = i, CurrentTime = DateTime.UtcNow });
+            }
 
             await host.RunAsync();
         }
